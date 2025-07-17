@@ -1,5 +1,5 @@
 
-** 📘 GraphQL Backend with Subscriptions (Apollo Server + Express + WebSockets) **
+## 📘 GraphQL Backend with Subscriptions (Apollo Server + Express + WebSockets) **
 ```
 This project is a GraphQL backend setup using:
 - Apollo Server (with Express)
@@ -26,9 +26,6 @@ This project is a GraphQL backend setup using:
 ├── package.json
 ├── tsconfig.json
 └── README.md
-```
-````
----
 
 ## 🧠 Key Concepts
 
