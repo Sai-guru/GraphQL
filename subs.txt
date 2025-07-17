@@ -1,0 +1,19 @@
+🔍 What's wrong?
+Your book resolver currently looks like this:
+book: ({ id }: { id: string }) => books.find((b:any) => b.id === id)
+This works only when arguments are passed correctly. But with Apollo Server + makeExecutableSchema, the arguments are passed as the second parameter of the resolver — not as a destructured object.
+
+✅ Correct resolver format
+book: (_: any, args: { id: string }) => {
+  return books.find((b: any) => b.id === args.id);
+}
+
+In a GraphQL resolver function, the arguments are always passed in a specific order:
+
+(parent, args, context, info) => { ... }
+📌 Resolver Function Parameters
+Parameter	Purpose
+parent	Result returned from the parent resolver (useful in nested queries)
+args	Arguments passed in the GraphQL query or mutation
+context	Shared object across resolvers — for auth, DB, etc.
+info	Metadata about the current query (field name, path, etc.)

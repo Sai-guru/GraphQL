@@ -1,0 +1,186 @@
+// import { buildSchema } from "graphql";
+// import {books} from "./data";
+
+//  //strcut of our data..gql object type or a model in our db(here eg:data.ts)
+//    //ID is spl type in gql...it is a unique identifier
+//      //it tells how can we read the data
+// export const schema = buildSchema(`
+//     type Book {    
+//     id:ID!            
+//     title:String!
+//     author:String
+//     }
+
+//     type Query {     
+//         allBooks: [Book] 
+//         book(id: ID!): Book   
+//         booksByAuthor(author: String!): [Book]
+//         title(id: ID!): String
+//         getAllBooksID : [ID!]
+//     }
+//         type Mutation {
+//   addBook(id: ID!, title: String!, author: String): Book
+//   updateBook(id:ID!,title:String,author:String):Book
+//   deleteBook(id:ID!):String
+//   deleteBooksByAuthor(author : String!):[Book]
+// }
+
+// `)
+// export const rootVal = {
+//     allBooks: () => books,   //returns the entire books array
+//     book: ({ id }: { id: string }) => books.find((b) =>{
+//          return b.id === id;   //takes id argument and finds the matching book
+//     }),
+//   booksByAuthor: ({ author }: { author: string }) => {
+//     if(author) return books.filter((b) => b.author === author);
+//     else return [];
+// },
+
+//     title:({id}:{id:string})=> {
+//         const res =  books.find((b)=>b.id===id);
+//         return res? res.title: null ;
+//     },
+//     getAllBooksID:()=>{
+//         return books.map((x)=>x.id);
+//     },
+//     addBook:({id,title,author}:{id:string,title:string,author:string})=>{
+//         const alreadyThere  = books.find((x)=>x.id===id);
+//         if(alreadyThere) {
+//             alreadyThere.title = title;
+//             alreadyThere.author = author;
+//             return alreadyThere;
+//         }
+//         const newBook = {id,title,author};
+//         if(!id|| !author || !title)  return "problem";
+//         books.push(newBook);
+//         return newBook;
+//     },
+//     updateBook :({id,title,author}:{id:string,title:string,author:string})=>{
+//         const updBook = books.find((x)=>x.id===id);
+//         if(!updBook) {
+//             throw new Error("not found , first create one");
+//         } 
+//        if(title!==undefined) updBook.title = title;
+//        if(author!==undefined) updBook.author = author;
+//         return updBook;
+//     },
+//     deleteBook :({id}:{id:string})=>{
+//         const delBookIndex = books.findIndex((x)=>x.id===id);
+//         // console.log("delBook",delBookIndex);
+//         if(delBookIndex===-1) throw new Error("not found , first create one");
+
+//         const var2 = books[delBookIndex];
+//         books.splice(delBookIndex,1);
+//          return `Book with ID ${id} has been deleted`+var2;
+//     },
+//     deleteBooksByAuthor :({author}:{author:string})=> {
+//         const delBooks = books.filter((x)=>x.author === author);
+//         if(delBooks.length === 0) throw new Error("not found , first create one");
+
+//         for (let i = books.length - 1; i >= 0; i--) {
+//                 if (books[i].author === author) {
+//                         books.splice(i, 1);
+//                }
+//        }
+
+//         return delBooks;
+//     }
+    
+// }
+
+// // Inside the building schema, there must be the structure of 
+// // that particular data, and the query which is used to access 
+// // it for multiple queries. And then for that query, 
+// // we will give the coding outer of that build schema function.
+
+
+
+import { books } from "./data.js";
+
+export const typeDefs = `#graphql
+
+type Book {
+id:ID!
+title:String!
+author:String
+}
+
+type Query {     
+         allBooks: [Book] 
+         book(id: ID!): Book   
+         booksByAuthor(author: String!): [Book]
+         title(id: ID!): String
+         getAllBooksID : [ID!]
+    }
+         
+     type Mutation {
+   addBook(id: ID!, title: String!, author: String): Book
+   updateBook(id:ID!,title:String,author:String):Book
+   deleteBook(id:ID!):String
+   deleteBooksByAuthor(author : String!):[Book]
+ }`;
+
+ export const resolvers = {
+    Query : {
+     allBooks: () => books,   
+     book: ({ id }: { id: string }) => books.find((b:any) =>{
+          return b.id === id;
+     }),
+   booksByAuthor: ({ author }: { author: string }) => {
+     if(author) return books.filter((b:any) => b.author === author);
+     else return [];
+ },
+
+     title:({id}:{id:string})=> {
+         const res =  books.find((b:any)=>b.id===id);
+         return res? res.title: null ;
+     },
+     getAllBooksID:()=>{
+         return books.map((x:any)=>x.id);
+     }
+    },
+     Mutation: {
+     addBook:({id,title,author}:{id:string,title:string,author:string})=>{
+         const alreadyThere  = books.find((x:any)=>x.id===id);
+         if(alreadyThere) {
+             alreadyThere.title = title;
+             alreadyThere.author = author;
+             return alreadyThere;
+         }
+         const newBook = {id,title,author};
+         if(!id|| !author || !title)  return "problem";
+         books.push(newBook);
+         return newBook;
+     },
+     updateBook :({id,title,author}:{id:string,title:string,author:string})=>{
+         const updBook = books.find((x:any)=>x.id===id);
+         if(!updBook) {
+             throw new Error("not found , first create one");
+         } 
+        if(title!==undefined) updBook.title = title;
+        if(author!==undefined) updBook.author = author;
+         return updBook;
+     },
+     deleteBook :({id}:{id:string})=>{
+         const delBookIndex = books.findIndex((x:any)=>x.id===id);
+          console.log("delBook",delBookIndex);
+         if(delBookIndex===-1) throw new Error("not found , first create one");
+
+         const var2 = books[delBookIndex];
+         books.splice(delBookIndex,1);
+          return `Book with ID ${id} has been deleted`+var2;
+     },
+     deleteBooksByAuthor :({author}:{author:string})=> {
+         const delBooks = books.filter((x:any)=>x.author === author);
+         if(delBooks.length === 0) throw new Error("not found , first create one");
+
+         for (let i = books.length - 1; i >= 0; i--) {
+                 if (books[i].author === author) {
+                         books.splice(i, 1);
+                }
+        }
+         return delBooks;
+       }
+    }
+    
+ }
