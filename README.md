@@ -137,8 +137,9 @@ useServer({ schema }, wsServer);
 
 ```json
 "scripts": {
-  "dev": "nodemon src/index.ts",
-  "start": "tsc && node dist/index.js"
+  "dev": "nodemon",
+    "build": "tsc",
+    "start": "nodemon --loader ts-node/esm src/index.ts"
 }
 ```
 
