@@ -1,6 +1,9 @@
+
+---
+
 ```
-# 
-### **📘 GraphQL Backend with Subscriptions (Apollo Server + Express + WebSockets)**
+# 📘 GraphQL Backend with Subscriptions (Apollo Server + Express + WebSockets)
+
 This project is a GraphQL backend setup using:
 - Apollo Server (with Express)
 - GraphQL Subscriptions via WebSockets
@@ -26,14 +29,13 @@ This project is a GraphQL backend setup using:
 ├── package.json
 ├── tsconfig.json
 └── README.md
-
 ```
-```
+````
 ---
 
 ## 🧠 Key Concepts
 
-### 1. **PubSub**
+**1. PubSub**  
 Used to publish and subscribe to in-memory events (like `bookAdded`).
 
 ```ts
@@ -41,8 +43,7 @@ import { PubSub } from 'graphql-subscriptions';
 const pubsub = new PubSub();
 ````
 
-### 2. **Subscriptions**
-
+**2. Subscriptions**
 Real-time updates using `graphql-ws` + WebSocket server.
 
 ```ts
@@ -53,8 +54,7 @@ Subscription: {
 }
 ```
 
-### 3. **makeExecutableSchema**
-
+**3. makeExecutableSchema**
 Combines type definitions and resolvers into a schema object.
 
 ```ts
@@ -77,7 +77,9 @@ npm install
 npm run dev
 ```
 
-### 💻 Access GraphQL Playground (Apollo Sandbox)
+---
+
+## 💻 Access GraphQL Playground (Apollo Sandbox)
 
 Visit:
 
@@ -122,8 +124,11 @@ subscription {
 
 ## 📡 Subscriptions Server
 
-* WebSocket endpoint runs at:
-  `ws://localhost:4000/graphql`
+WebSocket endpoint runs at:
+
+```
+ws://localhost:4000/graphql
+```
 
 Handled via:
 
@@ -138,8 +143,8 @@ useServer({ schema }, wsServer);
 ```json
 "scripts": {
   "dev": "nodemon",
-    "build": "tsc",
-    "start": "nodemon --loader ts-node/esm src/index.ts"
+  "build": "tsc",
+  "start": "nodemon --loader ts-node/esm src/index.ts"
 }
 ```
 
@@ -155,5 +160,12 @@ useServer({ schema }, wsServer);
 * graphql-subscriptions
 
 ---
+
 🚀 Learning GraphQL, one resolver at a time!
 
+```
+
+---
+
+✅ Now the top title and all code/points/numbered sections will display correctly on GitHub and markdown renderers. Let me know if you want a `.md` file version or want to add frontend info too.
+```
