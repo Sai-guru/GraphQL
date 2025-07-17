@@ -1,14 +1,12 @@
 
-## 📘 GraphQL Backend with Subscriptions (Apollo Server + Express + WebSockets) **
-```
+## 📘 GraphQL Backend with Subscriptions (Apollo Server + Express + WebSockets) 
+
 This project is a GraphQL backend setup using:
 - Apollo Server (with Express)
 - GraphQL Subscriptions via WebSockets
 - `graphql-ws` for real-time updates
 - TypeScript for type safety and clarity
-
----
-
+- 
 ## 🚀 Features
 
 - ✅ Fully functional GraphQL API with Query, Mutation, and Subscription support
