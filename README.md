@@ -20,8 +20,6 @@ This project is a GraphQL backend setup using:
 ---
 
 ## 🏗️ Project Structure
-
-```
 ├── src/
 │   ├── index.ts          # Server entry point (Express + HTTP + WS)
 │   └── schema.ts         # TypeDefs, Resolvers, and PubSub logic
@@ -30,7 +28,7 @@ This project is a GraphQL backend setup using:
 └── README.md
 
 ```
-
+```
 ---
 
 ## 🧠 Key Concepts
