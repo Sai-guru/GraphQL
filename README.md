@@ -1,4 +1,3 @@
----
 ```
 # 📘 GraphQL Backend with Subscriptions (Apollo Server + Express + WebSockets)
 
